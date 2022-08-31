@@ -6,16 +6,16 @@ import java.util.Scanner;
  * @author Jorge Miguel Aaron Barrientos Alvarez
  */
 public class Main{
-    /* Instancia estatica de Scanner, que nos permitira obtener datos desde
+    /* Instancia estática de Scanner, que nos permitirá obtener datos desde
       la terminal*/
     private static Scanner sc=new Scanner(System.in);
 
-    /* Instancia estatica de CategoryManager, que nos permitira acceder al 
+    /* Instancia estática de CategoryManager, que nos permitirá acceder al 
       funcionamiento de la clase CategoryManager */
     private static CategoryManager catMan=new CategoryManager();
 
     /**
-     * Metodo que nos permite emular un menu interactivo para darle uso al 
+     * Método que nos permite emular un menú interactivo para darle uso al 
      * funcionamiento de la clase CategoryManager
      */
     public static void menu(){
@@ -65,9 +65,9 @@ public class Main{
     }
 
     /** 
-     * Metodo que nos permite solicitar informacion al usuario atraves de terminal,
+     * Método que nos permite solicitar información al usuario através de terminal,
      * para posteriormente llamar al metodo 'createCategory' de la clase CategoryManeger
-     * con la informacion recibida por el usuario.
+     * con la información recibida por el usuario.
      */
     public static void createCategory(){
         sc.nextLine();
@@ -82,9 +82,9 @@ public class Main{
     }
 
     /** 
-     * Metodo que nos permite solicitar informacion al usuario atraves de terminal,
+     * Método que nos permite solicitar información al usuario através de terminal,
      * para posteriormente llamar al metodo 'getCategory' de la clase CategoryManeger
-     * con la informacion recibida por el usuario.
+     * con la información recibida por el usuario.
      */
     public static void getCategory(){
         sc.nextLine();
@@ -94,9 +94,9 @@ public class Main{
     }
 
     /** 
-     * Metodo que nos permite solicitar informacion al usuario atraves de terminal,
+     * Método que nos permite solicitar informacion al usuario através de terminal,
      * para posteriormente llamar al metodo 'deleteCategory' de la clase CategoryManeger
-     * con la informacion recibida por el usuario.
+     * con la información recibida por el usuario.
      */
     public static void deleteCategory(){
         sc.nextLine();
@@ -108,7 +108,7 @@ public class Main{
     }
 
     /** 
-     * Main de la clase, llama al metodo 'menu'.
+     * Main de la clase, llama al método 'menú'.
      */
     public static void main(String[] args){
         menu();

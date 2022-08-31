@@ -45,15 +45,15 @@ public class CategoryManager{
         }
 
         /**
-         * Metodo geter para el nombre de las categorias.
-         * @return el nombre de la categoria que invoca el metodo.
+         * Metodo geter para el nombre de las categorías.
+         * @return el nombre de la categoría que invoca el método.
          */
         public String getCategory(){
             return this.category;
         }
     }
 
-    /* Lista de los registros de las categorias. */
+    /* Lista de los registros de las categorías. */
     private static List<Category> registros;
 
     /**
@@ -65,11 +65,11 @@ public class CategoryManager{
     }
 
     /**
-     * Metodo que crea una categoria, creando una instancia de Category; la instancia
+     * Método que crea una categoría, creando una instancia de Category; la instancia
      * es almacenada en la variable registros. Si se recibe un 'id' repetido
-     * la categoria no puede ser creada y se le informa al usuario atraves de 
+     * la categoría no puede ser creada y se le informa al usuario através de 
      * un mensaje de texto.
-     * @param id el id de la categoria que se quiere crear.
+     * @param id el id de la categoría que se quiere crear.
      * @param name el nombre de la categoria que se quiere crear.
      * @return 0 si la categoria fue creada correctamente (creada y agregada a 
      *         'registros'), -1 en otro caso.
@@ -87,10 +87,11 @@ public class CategoryManager{
     }
 
     /**
-     * Metodo auxiliar que nos permite verificar si ya tenemos un registro de una
-     * categoria con un id en especifico; sirve para no crear categorias distintas
+     * Método auxiliar que nos permite verificar si ya tenemos un registro de una
+     * categoría con un id en especifico; sirve para no crear categorías distintas
      * con un mismo identificador
-     * @param id el id que se verificara si existe o no existe en los registros.
+     * @param id el id que se verificara si existe o no existe en los registros una
+     *           categoría con este identificador.
      * @return si el id ya existe con anterioridad, se regresara a la instancia de
      *         Category que cuenta con dicho identificador; si no se encuentra un registro
      *         que contenga al identificador id, se regresa <code>null</code>
@@ -105,9 +106,9 @@ public class CategoryManager{
     }
 
     /**
-     * Metodo que muestra en pantalla todas las instancias de Category de las que
-     * se tiene registro hasta el momento. En caso de no existir ningun registro,
-     * notifica atraves de un mensaje que no existen registros.
+     * Método que muestra en pantalla todas las instancias de Category de las que
+     * se tiene registro hasta el momento. En caso de no existir ningún registro,
+     * notifica através de un mensaje que no existen registros.
      */
     public void getCategories(){
         if(registros.isEmpty())
@@ -118,9 +119,9 @@ public class CategoryManager{
     }
 
     /**
-     * Metodo que muestra una categoria en especifico; la categoria es buscada dentro
+     * Método que muestra una categoría en específico; la categoria es buscada dentro
      * de nuestros registros usando como valor de referencia su identificador.
-     * @param id id de la categoria que se quiere mostrar en pantalla.
+     * @param id id de la categoría que se quiere mostrar en pantalla.
      */
     public void getCategory(String id){
         Category cat=checkId(id);
@@ -132,12 +133,12 @@ public class CategoryManager{
     }
 
     /**
-     * Metodo que elimina una categoria en especifico de los registros de categorias.
-     * La categoria a eliminar se encuentra usando como valor de referencia su 
-     * identificarod.
-     * @param id el identificador de la categoria que se busca eliminar.
-     * @return 0 si el registro de la categoria fue eliminado correctamente, -1 en
-     * otro caso (cuando no se encontro ningun registro que coincidiera con el 
+     * Método que elimina una categoría en específico de los registros de categorías.
+     * La categoría a eliminar se encuentra usando como valor de referencia su 
+     * identificador.
+     * @param id el identificador de la categoría que se busca eliminar.
+     * @return 0 si el registro de la categoría fue eliminado correctamente, -1 en
+     * otro caso (cuando no se encontro ningún registro que coincidiera con el 
      * identificador proporcionado por el usuario).
      */
     public int deleteCategory(String id){
