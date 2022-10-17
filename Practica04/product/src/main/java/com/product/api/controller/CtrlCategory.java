@@ -52,7 +52,7 @@ public class CtrlCategory{
      * positivo de http: OK.
      */
     @GetMapping("/{category_id}")
-    public ResponseEntity<Integer> getCategory(@PathVariable Integer category_id){
+    public ResponseEntity<Category> getCategory(@PathVariable Integer category_id){
         return new ResponseEntity<>(svc.getCategory(category_id), HttpStatus.OK);
     }
 
