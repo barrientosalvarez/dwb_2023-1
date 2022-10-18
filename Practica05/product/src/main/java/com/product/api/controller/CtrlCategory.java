@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.product.api.entity.Category;
 import com.product.api.service.SvcCategory;
+import com.product.api.dto.ApiResponse;
+import com.product.exception.ApiException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -66,14 +68,11 @@ public class CtrlCategory{
      * mensaje que indica que la categoría que se quizo crear ya existía.
      */
     @PostMapping
-    public ResponseEntity<String> createCategory(@Valid @RequestBody Category c,
+    public ResponseEntity<ApiResponse> createCategory(@Valid @RequestBody Category c,
             BindingResult br){
-        String mensaje="";
         
-        if(br.hasErrors()){
-            mensaje=br.getAllErrors().get(0).getDefaultMessage();
-            return new ResponseEntity<>(mensaje, HttpStatus.BAD_REQUEST);
-        }
+        if(br.hasErrors())
+            throw new ApiException(HttpStatus.BAD_REQUEST, br.getAllErrors().get(0).getDefaultMessage());
 
         return new ResponseEntity<>(svc.createCategory(c), HttpStatus.OK);
     }
@@ -89,14 +88,11 @@ public class CtrlCategory{
      * mensaje que indica que la categoría fue actualizada.
      */
     @PutMapping("/{category_id}")
-    public ResponseEntity<String> updateCategory(@PathVariable Integer category_id,
+    public ResponseEntity<ApiResponse> updateCategory(@PathVariable Integer category_id,
         @Valid @RequestBody Category c, BindingResult br){
-        String mensaje="";
 
-        if(br.hasErrors()){
-            mensaje=br.getAllErrors().get(0).getDefaultMessage();
-            return new ResponseEntity<>(mensaje, HttpStatus.BAD_REQUEST);
-        }
+        if(br.hasErrors())
+            throw new ApiException(HttpStatus.BAD_REQUEST, br.getAllErrors().get(0).getDefaultMessage());
 
         return new ResponseEntity<>(svc.updateCategory(category_id, c), HttpStatus.OK);
     }
@@ -114,7 +110,7 @@ public class CtrlCategory{
      * buscada no existe.
      */
     @DeleteMapping("/{category_id}")
-    public ResponseEntity<String> deleteCategory(@PathVariable Integer category_id){
+    public ResponseEntity<ApiResponse> deleteCategory(@PathVariable Integer category_id){
         return new ResponseEntity<>(svc.deleteCategory(category_id), HttpStatus.OK);
     }
 
