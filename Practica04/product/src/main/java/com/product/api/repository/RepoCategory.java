@@ -18,13 +18,15 @@ public interface RepoCategory extends JpaRepository<Category, Integer>{
     List<Category> findByStatus(@Param("status") Integer status);
 
     @Query(value="SELECT * FROM category WHERE category= :category", nativeQuery=true)
-    List<Category> findByCategory(@Param("category") String category);
+    Category findByCategory(@Param("category") String category);
 
     @Query(value="SELECT * FROM category WHERE category_id= :category_id AND status=1", nativeQuery=true)
     Category findByCategoryId(@Param("category_id") Integer category_id);
 
+    @Modifying
+    @Transactional
     @Query(value="INSERT INTO category (category,status) VALUES(:category,1)", nativeQuery=true)
-    Category createCategory(@Param("category") String category);
+    void createCategory(@Param("category") String category);
 
     @Modifying
     @Transactional
