@@ -44,11 +44,13 @@ public class Category{
      * @param category nombre de la categoría.
      * @param status estatus de la categoría.
      */
-    public Category(Integer category_id, String category, Integer status){
+    /*public Category(Integer category_id, String category, Integer status){
         this.category_id=category_id;
         this.category=category;
         this.status=status;
-    }
+    }*/
+    
+    public Category(){}
 
     /**
      * Getter del identificador de las categorías.
@@ -88,7 +90,7 @@ public class Category{
         if(o==null || this.getClass()!=o.getClass())
             return false;
 
-        @SuppressWarnings("unchecked") Category c = (Category) o;
+        Category c = (Category) o;
         
         if(this.getCategory_id()!=c.getCategory_id())
             return false;
