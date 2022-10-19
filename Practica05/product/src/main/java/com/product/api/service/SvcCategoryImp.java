@@ -3,12 +3,12 @@ package com.product.api.service;
 import java.util.List;
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.srpingframework.http.HttpStatus;
+import org.springframework.http.HttpStatus;
 
 import com.product.api.repository.RepoCategory;
 import com.product.api.entity.Category;
 import com.product.api.dto.ApiResponse;
-import com.customer.exception.ApiException;
+import com.product.exception.ApiException;
 
 @Service
 public class SvcCategoryImp implements SvcCategory{
@@ -26,7 +26,7 @@ public class SvcCategoryImp implements SvcCategory{
     public Category getCategory(Integer category_id){
         Category category=repo.findByCategoryId(category_id);
 
-        if(region==null)
+        if(category==null)
             throw new ApiException(HttpStatus.NOT_FOUND, "category does not exist");
 
         else
