@@ -2,7 +2,7 @@ package com.product.exception;
 
 import org.springframework.http.HttpStatus;
 
-public class ApiException extends RunTimeException{
+public class ApiException extends RuntimeException{
     
     private HttpStatus status;
 
@@ -11,7 +11,7 @@ public class ApiException extends RunTimeException{
         this.status=status;
     }
 
-    public HttpStaus getStatus(){
+    public HttpStatus getStatus(){
         return status;
     }
 

@@ -1,10 +1,10 @@
-packege com.product.exception;
+package com.product.exception;
 
 import java.time.LocalDateTime;
 
-import org.spirngframework.http.ResponseEntity;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
-import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.ServletWebRequest;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
@@ -19,8 +19,7 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler{
         response.setStatus(exception.getStatus().value());
         response.setError(exception.getStatus());
         response.setMessage(exception.getMessage());
-        response.setPath(((ServleWebRequest)request).getRequest().getRequestURI().toString());
-
+        response.setPath(((ServletWebRequest)request).getRequest().getRequestURI().toString());
         return new ResponseEntity<>(response, response.getError());
     }
 }
