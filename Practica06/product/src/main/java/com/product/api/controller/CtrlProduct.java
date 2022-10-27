@@ -27,7 +27,7 @@ public class CtrlProduct {
     @Autowired
     SvcProduct svc;
 	
-    //1. Implementar método getProduct
+    //1. Implementar metodo getProduct
     @GetMapping("/{gtin}")
     public ResponseEntity<ApiResponse> getProduct(@PathVariable String gtin){
         return new ResponseEntity<>(svc.getProduct(gtin), HttpStatus.OK);
