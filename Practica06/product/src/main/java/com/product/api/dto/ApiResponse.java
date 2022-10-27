@@ -1,5 +1,8 @@
 package com.product.api.dto;
 
+/**
+ * Clase ApiResponse para las respuestas que dará la API.
+ */
 public class ApiResponse{
 
     private String message;

@@ -14,6 +14,9 @@ import javax.validation.constraints.NotNull;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+/**
+ * Clase entidad de productos.
+ */
 @Entity
 @Table(name = "product")
 public class Product {
@@ -65,74 +68,146 @@ public class Product {
 	@JsonProperty("category")
 	private Category category;
 
+    /**
+     * Getter del produtc_id
+     * @return product_id
+     */
 	public Integer getProduct_id() {
 		return product_id;
 	}
 
+    /**
+     * Setter del id de un producto.
+     * @param product_id nuevo id de un producto. 
+     */
 	public void setProduct_id(Integer product_id) {
 		this.product_id = product_id;
 	}
 
+    /**
+     * Getter del código Gtin
+     * @return gtin
+     */
 	public String getGtin() {
 		return gtin;
 	}
 
+    /**
+     * Setter del código Gton de un producto.
+     * @param gtin nuevo código Gtin de un producto. 
+     */
 	public void setGtin(String gtin) {
 		this.gtin = gtin;
 	}
 
+    /**
+     * Getter del nombre del producto
+     * @return nombre del producto
+     */
 	public String getProduct() {
 		return product;
 	}
 
+    /**
+     * Setter del nombre de un producto.
+     * @param product nuevo nombre de un producto. 
+     */
 	public void setProduct(String product) {
 		this.product = product;
 	}
 
+    /**
+     * Getter de la descripción del producto
+     * @return descripción del producto.
+     */
 	public String getDescription() {
 		return description;
 	}
 
+    /**
+     * Setter de la descripción de un producto.
+     * @param descripcion nueva descripción de un producto. 
+     */
 	public void setDescription(String description) {
 		this.description = description;
 	}
 
+    /**
+     * Getter del precio del producto.
+     * @return precio del producto.
+     */
 	public Double getPrice() {
 		return price;
 	}
 
+    /**
+     * Setter del precio de un producto.
+     * @param precio nuevo precio de un producto. 
+     */
 	public void setPrice(Double price) {
 		this.price = price;
 	}
 
+    /**
+     * Getter del stock del producto.
+     * @return stock del producto.
+     */
 	public Integer getStock() {
 		return stock;
 	}
 
+    /**
+     * Setter del stock de un producto.
+     * @param stock nueva cantidad del stock para un producto. 
+     */
 	public void setStock(Integer stock) {
 		this.stock = stock;
 	}
 
+    /**
+     * Getter del identificador de la categoría a la que pertenece el producto.
+     * @return identificador de la categoría a la que pertenece el producto.
+     */
 	public Integer getCategory_id() {
 		return category_id;
 	}
 
+    /**
+     * Setter del id de la categoría a la que pertenece el producto.
+     * @param category_id nuevo id de la categoría a la que pertenecera el producto. 
+     */
 	public void setCategory_id(Integer category_id) {
 		this.category_id = category_id;
 	}
 
+    /**
+     * Getter del status del producto.
+     * @return status del producto.
+     */
 	public Integer getStatus() {
 		return status;
 	}
 
+    /**
+     * Setter del status del producto.
+     * @param status nuevo status para el producto. 
+     */
 	public void setStatus(Integer status) {
 		this.status = status;
 	}
 
+    /**
+     * Getter de la categoría a la que pertenece el producto.
+     * @return categoría a la que pertenece el producto.
+     */
 	public Category getCategory() {
 		return category;
 	}
 
+    /**
+     * Setter de la categoría a la que pertenece el producto.
+     * @param category categoría a actualizar.
+     */
 	public void setCategory(Category category) {
 		this.category = category;
 	}

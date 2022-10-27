@@ -34,8 +34,7 @@ public class CtrlCategory{
     SvcCategory svc;
 
     /**
-     * Muestra todas las categorías escritas a mano y guardadas en la variable 
-     * estática 'categorias'.
+     * Muestra todas las categorias almacenadas en la base de datos.
      * @return un objeto ResponseEntity con la lista de categorias y un estatus 
      * positivo de http: 'OK'.
      */
@@ -46,7 +45,7 @@ public class CtrlCategory{
 
     /**
      * Nos permite ver el identificador de una categoría, el identificador es 
-     * 'recibido' através del url path.
+     * recibido através del url path.
      * @param category_id identificador de la categoría a la cual se querra acceder
      * en un futuro.
      * @return un objeto ResponseEntity con el identificador recibido y un estatus
@@ -58,11 +57,11 @@ public class CtrlCategory{
     }
 
     /**
-     * Nos permite hacer la simulación de haber creado una nueva categoría.
-     * @param c la categoría que se quiere 'crear'.
+     * Crea una nueca categoria.
+     * @param c la categoría que se quiere crear.
      * @return un objeto ResponseEntity con un mensaje y un estatus de html:
-     * si la categoría que recibe el método no existe en la lista de categorías 
-     * 'categorias', se regresa un estatus positivo de html (OK) y un mensaje que 
+     * si la categoría que recibe el método no existe en la base de datos de categorías 
+     * 'category', se regresa un estatus positivo de html (OK) y un mensaje que 
      * indica que la categoría fue creada. Si la categoría que recibe el método
      * ya existia, se regresa un estatus negativo de html (BAD_REQUEST) y un
      * mensaje que indica que la categoría que se quizo crear ya existía.
@@ -78,11 +77,11 @@ public class CtrlCategory{
     }
 
     /**
-     * Nos permite hacer la simulación de haber actualizado una categoría.
-     * @param c la categoría que se quiere 'actualizar'.
+     * Actualiza una categoría.
+     * @param c la categoría que se quiere actualizar.
      * @return un objeto ResponseEntity con un mensaje y un estatus de html:
-     * si la categoría que recibe el método no existe en la lista de categorías 
-     * 'categorias', se regresa un status negativo de html (bad_request) y un 
+     * si la categoría que recibe el método no existe en la base de datos 
+     * 'category', se regresa un status negativo de html (bad_request) y un 
      * mensaje que indica que la categoría no existe. Si la categoría que recibe 
      * el método existe, se regresa un estatus positivo de html (ok) y un
      * mensaje que indica que la categoría fue actualizada.
@@ -98,8 +97,8 @@ public class CtrlCategory{
     }
 
     /**
-     * Nos permite hacer la simulación de haber eliminado una categoría.
-     * @param category_id el id de la categoría a 'eliminar', se recibe através
+     * Elimina una categoría (cambia el status de 1 a 0)
+     * @param category_id el id de la categoría a eliminar, se recibe através
      * del url path.
      * @return un objeto ResponsEentity con un mensaje y un estatus de html:
      * si el identificador que recibe el método coincide con el de una categoría

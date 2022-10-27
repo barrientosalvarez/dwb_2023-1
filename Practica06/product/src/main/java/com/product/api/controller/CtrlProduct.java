@@ -20,6 +20,9 @@ import com.product.api.entity.Product;
 import com.product.api.service.SvcProduct;
 import com.product.exception.ApiException;
 
+/**
+ * Clase controlador para los productos.
+ */
 @RestController
 @RequestMapping("/product")
 public class CtrlProduct {
@@ -28,11 +31,23 @@ public class CtrlProduct {
     SvcProduct svc;
 	
     //1. Implementar metodo getProduct
+    /**
+     * Muestra un producto.
+     * @param gtin codigo Gtin del producto que se va a mostrar.
+     * @return ResponseEntity con el producto buscado y un HttpStatus.
+     */
     @GetMapping("/{gtin}")
     public ResponseEntity<Product> getProduct(@PathVariable String gtin){
         return new ResponseEntity<>(svc.getProduct(gtin), HttpStatus.OK);
     }
 
+    /**
+     * Permite crear un nuevo producto.
+     * @param in Json con la información del nuevo producto que será creado.
+     * @param bindingResult que nos permite revisar validaciones.
+     * @return ApiException si se encontraron errores, ResponseEntity correspondiente
+     * a la acción de crear un nuevo producto en otro caso.
+     */
     @PostMapping
     public ResponseEntity<ApiResponse> createProduct(@Valid @RequestBody Product in, BindingResult bindingResult){
         if(bindingResult.hasErrors())
@@ -40,6 +55,12 @@ public class CtrlProduct {
         return new ResponseEntity<>(svc.createProduct(in),HttpStatus.OK);
     }
 	
+    /**
+     * Actualiza un producto en especifico.
+     * @param id identificador del producto a actualizar.
+     * @return ApiException si se encontraron errores, ResponseEntity correspondiente
+     * a la acción de actualizar un producto en otro caso.
+     */
     @PutMapping("/{id}")
     public ResponseEntity<ApiResponse> updateProduct(@PathVariable("id") Integer id, @Valid @RequestBody Product in, BindingResult bindingResult){
         if(bindingResult.hasErrors())
@@ -48,11 +69,23 @@ public class CtrlProduct {
 	}
 	
     // 2. Implementar método updateProductStock
+    /**
+     * Actualiza el stock de un producto en especifico.
+     * @param gtin codigo Gtin del producto a actualizar.
+     * @param stock cantidad que le será restada al stock original.
+     * @return ResponseEntity correspondiente a la acción de actualizar el stock 
+     * de un producto.
+     */
     @PutMapping("/{gtin}/stock/{stock}")
     public ResponseEntity<ApiResponse> updateProductStock(@PathVariable String gtin, @PathVariable Integer stock){
         return new ResponseEntity<>(svc.updateProductStock(gtin, stock), HttpStatus.OK);
     }
     
+    /**
+     * Cambia el status de un producto de 1 a 0.
+     * @param id identificador del producto cuyo status será cambiado.
+     * @return ResponseEntity correspondiente a "eliminar" un producto.
+     */
     @DeleteMapping("/{id}")
     public ResponseEntity<ApiResponse> deleteProduct(@PathVariable("id") Integer id){
         return new ResponseEntity<>(svc.deleteProduct(id), HttpStatus.OK);
