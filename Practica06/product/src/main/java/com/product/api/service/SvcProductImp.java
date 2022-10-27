@@ -57,7 +57,6 @@ public class SvcProductImp implements SvcProduct {
             return new ApiResponse("product activated");
         }
         else{
-            repo.createProduct(in);
             return new ApiResponse("product created");
         }
     }
