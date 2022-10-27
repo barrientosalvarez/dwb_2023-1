@@ -14,10 +14,12 @@ import com.product.api.entity.Product;
 public interface RepoProduct extends JpaRepository<Product, Integer>{
 	
     // 3. Implementar la firma de un método que permita consultar un producto por su código GTIN y con estatus 1
-    @Modifying
-    @Transactional
     @Query(value = "SELECT * FROM product WHERE gtin= :gtin AND status=1", nativeQuery=true)
     Product getProduct(@Param("gtin") String gtin);
+    
+    // Implementacion de la firma de un metodo que permite consultar un producto por su codigo GTIN sin importar su status
+    @Query(value="SELECT * FROM product WHERE gtin= :gtin", nativeQuery=true)
+    Product getProductByGtin(@Param("gtin") String gtin);
 
     @Modifying
     @Transactional
