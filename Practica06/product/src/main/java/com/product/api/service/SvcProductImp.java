@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 
 import com.product.api.dto.ApiResponse;
 import com.product.api.entity.Product;
-import com.product.api.entity.Category;
 import com.product.api.repository.RepoCategory;
 import com.product.api.repository.RepoProduct;
 import com.product.exception.ApiException;
@@ -40,16 +39,27 @@ public class SvcProductImp implements SvcProduct {
 	 */
 	@Override
 	public ApiResponse createProduct(Product in) {
-        Category check=in.getCategory();
+        Integer updated=0;
 
-        if(repoCategory.findByCategory(check)==null){
-            throw new ApiException(HttpStatus.NOT_FOUND, "category not found");
+        try{
+            updated=repo.createProduct(in)
+        }catch(DataIntegrityViolationException e){
+            if(e.getLocalizedMessage().contains("gtin"))
+                throw new ApiException(HttpStatus.BAD_REQUEST, "product gtin already exist");
+            if(e.getLocalizedMessage().contains("product"))
+                throw new ApiException(HttpStatus.BAD_REQUEST, "product name already exist");
+			if (e.contains(SQLIntegrityConstraintViolationException.class))
+				throw new ApiException(HttpStatus.BAD_REQUEST, "category not found");
+        }
+
+        Product check=repo.getProduct(in.getGtin());
+        if(chek!=null && check.getStatus()==0){
+            repo.updateProduct(in.getProduct_id, in.getGtin(), in.getProduct(), in.getDescription(), in.getPrice(), in.getStock, in.getCategory_id());
+            return new ApiResponse("product activated");
         }
         else{
-            if(repo.getProduct(in.getGtin())!= null)
-                throw new ApiException(HttpStatus.BAD_REQUEST, "product gtin already exist");
-
-            else if(repo.get)
+            repo.createProduct(in);
+            return new ApiResponse("product created");
         }
 	}
 
