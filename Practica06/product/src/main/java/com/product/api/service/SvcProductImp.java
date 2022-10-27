@@ -39,10 +39,9 @@ public class SvcProductImp implements SvcProduct {
     */
     @Override
     public ApiResponse createProduct(Product in) {
-        Integer updated=0;
 
         try{
-            updated=repo.createProduct(in)
+            repo.save(in);
         }catch(DataIntegrityViolationException e){
             if(e.getLocalizedMessage().contains("gtin"))
                 throw new ApiException(HttpStatus.BAD_REQUEST, "product gtin already exist");
