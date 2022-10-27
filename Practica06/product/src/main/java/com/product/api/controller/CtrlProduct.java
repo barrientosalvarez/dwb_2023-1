@@ -24,38 +24,37 @@ import com.product.exception.ApiException;
 @RequestMapping("/product")
 public class CtrlProduct {
 
-	@Autowired
-	SvcProduct svc;
+    @Autowired
+    SvcProduct svc;
 	
-	// 1. Implementar método getProduct
+    //1. Implementar método getProduct
     @GetMapping("/{gtin}")
     public ResponseEntity<ApiResponse> getProduct(@PathVariable String gtin){
         return new ResponseEntity<>(svc.getProduct(gtin), HttpStatus.OK);
     }
 
-	@PostMapping
-	public ResponseEntity<ApiResponse> createProduct(@Valid @RequestBody Product in, BindingResult bindingResult){
-		if(bindingResult.hasErrors())
-			throw new ApiException(HttpStatus.BAD_REQUEST, bindingResult.getAllErrors().get(0).getDefaultMessage());
-		return new ResponseEntity<>(svc.createProduct(in),HttpStatus.OK);
+    @PostMapping
+    public ResponseEntity<ApiResponse> createProduct(@Valid @RequestBody Product in, BindingResult bindingResult){
+        if(bindingResult.hasErrors())
+            throw new ApiException(HttpStatus.BAD_REQUEST, bindingResult.getAllErrors().get(0).getDefaultMessage());
+        return new ResponseEntity<>(svc.createProduct(in),HttpStatus.OK);
+    }
+	
+    @PutMapping("/{id}")
+    public ResponseEntity<ApiResponse> updateProduct(@PathVariable("id") Integer id, @Valid @RequestBody Product in, BindingResult bindingResult){
+        if(bindingResult.hasErrors())
+            throw new ApiException(HttpStatus.BAD_REQUEST, bindingResult.getAllErrors().get(0).getDefaultMessage());
+        return new ResponseEntity<>(svc.updateProduct(in, id),HttpStatus.OK);
 	}
 	
-	@PutMapping("/{id}")
-	public ResponseEntity<ApiResponse> updateProduct(@PathVariable("id") Integer id, @Valid @RequestBody Product in, BindingResult bindingResult){
-		if(bindingResult.hasErrors())
-			throw new ApiException(HttpStatus.BAD_REQUEST, bindingResult.getAllErrors().get(0).getDefaultMessage());
-		return new ResponseEntity<>(svc.updateProduct(in, id),HttpStatus.OK);
-	}
-	
-	// 2. Implementar método updateProductStock
+    // 2. Implementar método updateProductStock
     @PutMappig("/{gtin}/stock/{stock}")
-	public ResponseEntity<ApiResponse> updateProductStock(@PathVariable String gtin, @PathVariable Integer stock){
+    public ResponseEntity<ApiResponse> updateProductStock(@PathVariable String gtin, @PathVariable Integer stock){
         return new ResponseEntity<>(svc.updateProductStock(gtin, stock), HttpStatus.OK);
     }
     
-
-	@DeleteMapping("/{id}")
-	public ResponseEntity<ApiResponse> deleteProduct(@PathVariable("id") Integer id){
-		return new ResponseEntity<>(svc.deleteProduct(id), HttpStatus.OK);
-	}
+    @DeleteMapping("/{id}")
+    public ResponseEntity<ApiResponse> deleteProduct(@PathVariable("id") Integer id){
+        return new ResponseEntity<>(svc.deleteProduct(id), HttpStatus.OK);
+    }
 }
