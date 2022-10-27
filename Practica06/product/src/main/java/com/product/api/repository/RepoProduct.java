@@ -14,7 +14,6 @@ import com.product.api.entity.Product;
 public interface RepoProduct extends JpaRepository<Product, Integer>{
 	
 	// 3. Implementar la firma de un método que permita consultar un producto por su código GTIN y con estatus 1
-	
     @Modifying
     @Transactional
     @Query(value = "SELECT * FROM product WHERE gtin= :gtin AND status=1", nativeQuery=true)
