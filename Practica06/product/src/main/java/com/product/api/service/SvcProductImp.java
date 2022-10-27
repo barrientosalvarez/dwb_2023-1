@@ -1,5 +1,7 @@
 package com.product.api.service;
 
+import java.sql.SQLIntegrityConstraintViolationException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
@@ -24,7 +26,7 @@ public class SvcProductImp implements SvcProduct {
     public Product getProduct(String gtin) {
         Product product = repo.getProduct(gtin); 
         if (product != null) {
-            product.setCategory(repoCategory.getCategory(product.getCategory_id()));
+            product.setCategory(repoCategory.findByCategoryId(product.getCategory_id()));
             return product;
         }else
             throw new ApiException(HttpStatus.NOT_FOUND, "product does not exist");
@@ -39,6 +41,22 @@ public class SvcProductImp implements SvcProduct {
     */
     @Override
     public ApiResponse createProduct(Product in) {
+    	Product check=repo.getProductByGtin(in.getGtin());
+        if(check!=null && check.getStatus()==0){
+        	try {
+        		 repo.updateProduct(check.getProduct_id(), in.getGtin(), in.getProduct(), in.getDescription(), in.getPrice(), in.getStock(), in.getCategory_id());
+        	}catch(DataIntegrityViolationException e){
+                if(e.getLocalizedMessage().contains("gtin"))
+                    throw new ApiException(HttpStatus.BAD_REQUEST, "product gtin already exist");
+                if(e.getLocalizedMessage().contains("product"))
+                    throw new ApiException(HttpStatus.BAD_REQUEST, "product name already exist");
+    			if (e.contains(SQLIntegrityConstraintViolationException.class))
+    				throw new ApiException(HttpStatus.BAD_REQUEST, "category not found");
+        	}
+            return new ApiResponse("product activated");
+        }
+        
+    	in.setStatus(1);
 
         try{
             repo.save(in);
@@ -51,14 +69,7 @@ public class SvcProductImp implements SvcProduct {
 				throw new ApiException(HttpStatus.BAD_REQUEST, "category not found");
         }
 
-        Product check=repo.getProduct(in.getGtin());
-        if(chek!=null && check.getStatus()==0){
-            repo.updateProduct(in.getProduct_id, in.getGtin(), in.getProduct(), in.getDescription(), in.getPrice(), in.getStock, in.getCategory_id());
-            return new ApiResponse("product activated");
-        }
-        else{
-            return new ApiResponse("product created");
-        }
+        return new ApiResponse("product created");
     }
 
     @Override
