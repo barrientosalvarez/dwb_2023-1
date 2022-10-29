@@ -16,43 +16,43 @@ public class ExceptionResponse{
 	public ExceptionResponse(){}
 
 	public LocalDateTime getTimestamp(){
-		return timestamp;
+            return timestamp;
 	}
 
 	public Integer getStatus(){
-		return status;
+            return status;
 	}
 
 
 	public HttpStatus getError(){
-		return error;
+            return error;
 	}
 
 	public String getMessage(){
-		return message;
+            return message;
 	}
 
 	public String getPath(){
-		return path;
+            return path;
 	}
 
 	public void setTimestamp(LocalDateTime timestamp){
-		this.timestamp = timestamp;
+            this.timestamp = timestamp;
 	}
     
 	public void setStatus(Integer status){
-		this.status = status;
+            this.status = status;
 	}
 
 	public void setError(HttpStatus error){
-		this.error = error;
+            this.error = error;
 	}
 
 	public void setMessage(String message){
-		this.message = message;
+            this.message = message;
 	}
 
 	public void setPath(String path){
-		this.path = path;
+	    this.path = path;
 	}
 }
