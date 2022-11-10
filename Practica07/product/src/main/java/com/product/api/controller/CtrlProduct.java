@@ -1,5 +1,7 @@
 package com.product.api.controller;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.product.api.dto.ApiResponse;
+import com.product.api.dto.DtoProductList;
 import com.product.api.entity.Product;
 import com.product.api.service.SvcProduct;
 import com.product.exception.ApiException;
@@ -29,7 +32,21 @@ public class CtrlProduct {
 
     @Autowired
     SvcProduct svc;
-	
+
+    // Implementacion endpoint update product category
+    @PutMapping("{gtin}/category")
+    public ResponseEntity<ApiResponse> updateProductCategory(@PathVariable String gtin, @Valid @RequestBody Integer category_id, BindingResult br){
+        if(br.hasErrors())
+            throw new ApiException(HttpStatus.BAD_REQUEST, br.getAllErrors().get(0).getDefaultMessage());
+        return new ResponseEntity<>(svc.updateProductCategory(gtin, category_id), HttpStatus.OK);
+    }
+
+    // Implementacion del endpoint List Products
+    @GetMapping("/category/{category_id}")
+    public ResponseEntity<List<DtoProductList>> getProducts(@PathVariable Integer category_id) throws Exception{
+        return new ResponseEntity<>(svc.findByCategory_id(category_id), HttpStatus.OK);
+    }
+
     //1. Implementar metodo getProduct
     /**
      * Muestra un producto.
