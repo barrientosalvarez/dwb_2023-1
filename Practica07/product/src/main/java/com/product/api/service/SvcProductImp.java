@@ -1,6 +1,7 @@
 package com.product.api.service;
 
 import java.sql.SQLIntegrityConstraintViolationException;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -8,9 +9,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import com.product.api.dto.ApiResponse;
+import com.product.api.dto.DtoProductList;
 import com.product.api.entity.Product;
 import com.product.api.repository.RepoCategory;
 import com.product.api.repository.RepoProduct;
+import com.product.api.repository.RepoProductList;
 import com.product.exception.ApiException;
 
 @Service
@@ -21,6 +24,29 @@ public class SvcProductImp implements SvcProduct {
 	
     @Autowired
     RepoCategory repoCategory;
+    
+    @Autowired
+    RepoProductList repoProductList;
+
+    // Punto 1, endpoint list
+    @Override
+    public List<DtoProductList> findByCategory_id(Integer category_id){
+        return repoProductList.findByCategory_id(category_id);
+    }
+
+    // Punto 2, endpoint update product category
+    public ApiResponse updateProductCategory(String gtin, Integer category_id){
+        if(repoCategory.findByCategoryId(category_id)==null)
+            throw new ApiException(HttpStatus.BAD_REQUEST, "category not found");
+
+        if(repo.getProductByGtin(gtin)==null)
+            throw new ApiException(HttpStatus.NOT_FOUND, "product does not exist");
+
+        repo.updateProductCategory(gtin, category_id);
+
+        return new ApiResponse("product category updated");
+    }
+    
 
     @Override
     public Product getProduct(String gtin) {
