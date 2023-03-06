@@ -1,11 +1,11 @@
-# Practica 1: Conceptos básicos de java.
+# Assignment 1: Java basics.
 
-## Datos
+## Author.
 * Jorge Miguel Aaron Barrientos Alvarez
 
 * jma.barrientos@ciencias.unam.mx
 
-## Distribucion general de la practica (despues de la compilacion).
+## General distribution of the task (after compilation).
 ```bash
 .
 ├── first_run.sh
@@ -25,13 +25,11 @@
 
 ```
 
-## Ejecución
-Para una sencilla ejecución de la práctica se cuenta con dos scripts: firs_run.sh y run.sh Si es la primera vez que se va a ejecutar
+## Execution.
+For a simple execution of the task there are two scripts: firs_run.sh and run.sh.  If it is the first time the
 
-el programa, es necesario correr el script first_run.sh, ya que este primero compilara las clases CategoryManager.java y Main.java.
+program is going to be executed, it is necessary to run the first_run.sh script, since it will first compile the 
 
-Si el programa no sera ejecutado por primera vez, es suficiente correr el script run.sh, ya que este solo ejecutara los compilados
+CategoryManager.java and Main.java classes. If the program will not be executed for the first time, it is enough 
 
-que ya han sido compilados con anterioridad.
-
-Esta carpeta no contiene los compilados de la practica, por lo que es necesario correr el script firs_run.sh.
+to run the script run.sh, since it will only execute the existing compiled ones.
