@@ -1,6 +1,6 @@
-# Desarrollo Web Back-End
-Repositorio que contiene las prácticas realizadas a lo largo del curso de Desarrollo web back-end del semestre 2023-1.
+# Back-End Web Development course.
+Repository containing the practices carried out during the Back-End Web Development course of semester 2023-1.
 
-## Autor.
+## Author.
 * Jorge Miguel Aaron Barrientos Alvarez
 * jma.barrientos@ciencias.unam.mx
